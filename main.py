@@ -17,7 +17,11 @@ def downloadVideo():
     print(downloadType.get(), link.get())
 
     os.chdir("output")
-    os.mkdir(str(title.get()))
+    if os.path.exists(str(title.get())):
+        os.chdir(str(title.get()))
+        os.chdir("..")
+    else:
+        os.mkdir(str(title.get()))
     os.chdir("..")
 
     if downloadType.get() == 1 and not(link.get() == ""):
@@ -30,6 +34,9 @@ def downloadVideo():
         os.system("youtube-dl --yes-playlist -f best " + str(link.get()))
     else:
         c.printColor(c.red, "Please choose a valid option.")
+    
+    link.set("")
+    title.set("")
 
     os.chdir("..")
     os.chdir("..")
