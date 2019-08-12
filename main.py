@@ -45,6 +45,11 @@ submitButton = tkinter.Button(window, text="Submit", command=downloadVideo)
 
 #Main installation function for outside sources
 def install():
+    if os.path.exists("output"):
+        print("Output folder exists!")
+    else:
+        os.mkdir("output")
+
     #Check to see if Brew needs to be installed
     checkIfBrewIsInstalled = str(os.system("brew -v")).split()
     if checkIfBrewIsInstalled[0] == "0":
